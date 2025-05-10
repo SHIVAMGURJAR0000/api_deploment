@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test Data Submission</title>
+  </head>
+  <body>
+    <h1>Submit Data (e.g., 1, 2, a, b)</h1>
+    <input
+      type="text"
+      id="dataInput"
+      placeholder="Enter comma-separated values"
+    />
+    <button onclick="submitData()">Submit</button>
+
+    <pre id="result"></pre>
+
+    <script>
+      async function submitData() {
+        const input = document.getElementById("dataInput").value;
+        const dataArray = input.split(",").map((val) => val.trim());
+
+        const response = await fetch("/.netlify/functions/api/TestData", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: dataArray }),
+        });
+
+        const result = await response.json();
+        document.getElementById("result").textContent = JSON.stringify(
+          result,
+          null,
+          2
+        );
+      }
+    </script>
+  </body>
+</html>
