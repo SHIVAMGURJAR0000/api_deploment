@@ -3,6 +3,7 @@ const app = express();
 
 import ServerlessHttp from "serverless-http";
 app.use(express.json());
+const router = express.Router();
 
 let users = [
   { id: 1, name: "Alice", email: "alice@mail.com" },
@@ -14,7 +15,7 @@ let count = 0;
 // route parameter (object)
 // Query parameter (object)
 // http://localhost:3000/api/UserData/7987?name=Bob&ids=1,2,3 (testing url)
-app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
+router.get("/.netlify/functions/api/UserData/:id", (req, res) => {
   count++;
   const { name, ids } = req.query;
   const { id } = req.params;
@@ -41,7 +42,7 @@ app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
 });
 
 // this not working for this we have to make handler
-app.post("/.netlify/functions/api/TestData", (req, res) => {
+router.post("/TestData", (req, res) => {
   const data = req.body.data;
 
   // if (!Array.isArray(data)) {
@@ -72,10 +73,11 @@ app.post("/.netlify/functions/api/TestData", (req, res) => {
 
   res.status(200).json({
     status: "success",
-    data: data,
+    received: data,
   });
 });
 
+app.use("/.netlify/functions/api", router);
 const handler = ServerlessHttp(app);
 module.exports.handler = async (event, context) => {
   const result = await handler(event, context);
