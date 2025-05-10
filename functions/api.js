@@ -42,7 +42,7 @@ app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
 
 // this not working for this we have to make handler
 app.post("/.netlify/functions/api/TestData", (req, res) => {
-  const { data } = req.body;
+  const { data } = req.body.data;
 
   // if (!Array.isArray(data)) {
   //   return res
