@@ -29,7 +29,7 @@ exports.handler = async (event) => {
       status: "success",
       numbers,
       alphabets,
-      user_id: "Shivam_Gurjar_07042003",
+      user_id: "Shivam_Gurjar_0704200",
       email_id: "shivamgurjar220386@acropolis.in",
       college_roll_number: "0827CY221057",
     }),
