@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 import ServerlessHttp from "serverless-http";
+app.use(express.json());
 
 let users = [
   { id: 1, name: "Alice", email: "alice@mail.com" },
@@ -39,6 +40,7 @@ app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
   });
 });
 
+// this not working for this we have to make handler
 app.post("/.netlify/functions/api/TestData", (req, res) => {
   const { data } = req.body;
 
