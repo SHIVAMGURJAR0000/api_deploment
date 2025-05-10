@@ -44,30 +44,35 @@ app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
 app.post("/.netlify/functions/api/TestData", (req, res) => {
   const { data } = req.body;
 
-  if (!Array.isArray(data)) {
-    return res
-      .status(400)
-      .json({ status: "error", message: "Data must be an array." });
-  }
+  // if (!Array.isArray(data)) {
+  //   return res
+  //     .status(400)
+  //     .json({ status: "error", message: "Data must be an array." });
+  // }
 
-  const numbers = [];
-  const alphabets = [];
+  // const numbers = [];
+  // const alphabets = [];
 
-  data.forEach((item) => {
-    if (!isNaN(item)) {
-      numbers.push(item);
-    } else {
-      alphabets.push(item);
-    }
-  });
+  // data.forEach((item) => {
+  //   if (!isNaN(item)) {
+  //     numbers.push(item);
+  //   } else {
+  //     alphabets.push(item);
+  //   }
+  // });
+
+  // res.status(200).json({
+  //   status: "success",
+  //   user_id: "Shivam_Gurjar_07042003",
+  //   email_id: "shivamgurjar220386@acropolis.in",
+  //   college_roll_number: "0827CY221057",
+  //   numbers,
+  //   alphabets,
+  // });
 
   res.status(200).json({
     status: "success",
-    user_id: "Shivam_Gurjar_07042003",
-    email_id: "shivamgurjar220386@acropolis.in",
-    college_roll_number: "0827CY221057",
-    numbers,
-    alphabets,
+    data: data,
   });
 });
 
