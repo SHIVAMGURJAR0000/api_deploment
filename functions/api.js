@@ -39,7 +39,7 @@ app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
   });
 });
 
-app.post("/TestData", (req, res) => {
+app.post("/.netlify/functions/api/TestData", (req, res) => {
   const { data } = req.body;
 
   if (!Array.isArray(data)) {
