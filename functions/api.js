@@ -8,10 +8,13 @@ let users = [
   { id: 2, name: "Bob", email: "bob@mail.com" },
 ];
 
+let count = 0;
+
 // route parameter (object)
 // Query parameter (object)
 // http://localhost:3000/api/UserData/7987?name=Bob&ids=1,2,3 (testing url)
 app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
+  count++;
   const { name, ids } = req.query;
   const { id } = req.params;
 
@@ -27,7 +30,13 @@ app.get("/.netlify/functions/api/UserData/:id", (req, res) => {
     }
   });
 
-  res.json({ users, requestedId: id, queriedName: name, ids: idArray });
+  res.json({
+    users,
+    requestedId: id,
+    queriedName: name,
+    ids: idArray,
+    hitCount: count,
+  });
 });
 
 const handler = ServerlessHttp(app);
