@@ -20,7 +20,7 @@
         const input = document.getElementById("dataInput").value;
         const dataArray = input.split(",").map((val) => val.trim());
 
-        const response = await fetch("/.netlify/functions/api/TestData", {
+        const response = await fetch("/.netlify/functions/TestData", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ data: dataArray }),
